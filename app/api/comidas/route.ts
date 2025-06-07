@@ -26,35 +26,51 @@ const salgados = [
 ]
 
 export async function GET() {
-  await connectDB()
+  try {
+    await connectDB()
 
-  const Festa = mongoose.models.Festa || mongoose.model('Festa', new mongoose.Schema({
-    nome: String,
-    amigos: [String],
-    comidas: [String],
-    tipo: String,
-  }, { timestamps: true }))
+    const Festa = mongoose.models.Festa || mongoose.model('Festa', new mongoose.Schema({
+      nome: String,
+      amigos: [String],
+      comidas: [String],
+      tipo: String,
+    }, { timestamps: true }))
 
-  const registros = await Festa.find()
+    const registros = await Festa.find()
 
-  const count = (lista: typeof doces | typeof salgados) =>
-    lista.map(item => {
-      const registrosDoItem = registros.filter(reg =>
-        reg.comidas.includes(item.id)
-      )
+    console.log('✅ Registros encontrados:', registros.length)
 
-      const pessoas = Array.from(new Set(registrosDoItem.map(r => r.nome)))
+    const count = (lista: typeof doces | typeof salgados) =>
+      lista.map(item => {
+        const registrosDoItem = registros.filter(reg =>
+          reg.comidas.includes(item.id)
+        )
 
-      return {
-        ...item,
-        restante: Math.max(item.max - registrosDoItem.length, 0),
-        pessoas,
-      }
+        const pessoas = Array.from(new Set(registrosDoItem.map(r => r.nome)))
+
+        return {
+          ...item,
+          restante: Math.max(item.max - registrosDoItem.length, 0),
+          pessoas,
+        }
+      })
+
+    const docesContados = count(doces)
+    const salgadosContados = count(salgados)
+
+    console.log('✅ Doces computados:', docesContados)
+    console.log('✅ Salgados computados:', salgadosContados)
+
+    return NextResponse.json({
+      doces: docesContados,
+      salgados: salgadosContados,
     })
 
-  return NextResponse.json({
-    doces: count(doces),
-    salgados: count(salgados),
-  })
+  } catch (error: any) {
+    console.error('❌ Erro em /api/comidas:', error?.message || error)
+    return NextResponse.json(
+      { error: 'Erro interno no servidor', detalhe: error?.message || String(error) },
+      { status: 500 }
+    )
+  }
 }
-
