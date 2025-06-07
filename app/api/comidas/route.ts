@@ -66,11 +66,14 @@ export async function GET() {
       salgados: salgadosContados,
     })
 
-  } catch (error: any) {
-    console.error('❌ Erro em /api/comidas:', error?.message || error)
+    } catch (error: unknown) {
+    const mensagem = error instanceof Error ? error.message : 'Erro desconhecido'
+    console.error('❌ Erro em /api/comidas:', mensagem)
+
     return NextResponse.json(
-      { error: 'Erro interno no servidor', detalhe: error?.message || String(error) },
+      { error: 'Erro interno no servidor', detalhe: mensagem },
       { status: 500 }
     )
   }
+
 }
