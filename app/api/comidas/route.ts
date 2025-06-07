@@ -25,7 +25,7 @@ const salgados = [
   { id: 'salsichao', nome: 'Salsichão', max: 2, imagem: '/salgados/salsichao.jpeg' },
 ]
 
-export async function GET(req: Request) {
+export async function GET() {
   await connectDB()
 
   const Festa = mongoose.models.Festa || mongoose.model('Festa', new mongoose.Schema({
@@ -39,12 +39,10 @@ export async function GET(req: Request) {
 
   const count = (lista: typeof doces | typeof salgados) =>
     lista.map(item => {
-      // Filtra os registros que escolheram este item
       const registrosDoItem = registros.filter(reg =>
         reg.comidas.includes(item.id)
       )
 
-      // Extrai nomes únicos de quem escolheu
       const pessoas = Array.from(new Set(registrosDoItem.map(r => r.nome)))
 
       return {
@@ -59,3 +57,4 @@ export async function GET(req: Request) {
     salgados: count(salgados),
   })
 }
+

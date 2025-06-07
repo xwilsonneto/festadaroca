@@ -23,8 +23,9 @@ export async function POST(req: Request) {
     console.log('Documento salvo:', doc)
 
     return NextResponse.json({ success: true, data: doc })
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido'
     console.error('Erro no POST /api/festa:', err)
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 })
+    return NextResponse.json({ success: false, error: errorMessage }, { status: 500 })
   }
 }

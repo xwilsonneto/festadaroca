@@ -1,9 +1,8 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export default function FinalPage() {
-
   return (
     <main className="min-h-screen bg-[#fff9e6] text-[#3e2a1c] px-6 py-12 flex flex-col items-center">
       <motion.div
@@ -18,7 +17,6 @@ export default function FinalPage() {
             Obrigado por confirmar sua presença na nossa Festa Junina!
           </p>
 
-          {/* Destaque para a contribuição */}
           <motion.div
             initial={{ scale: 1 }}
             animate={{ scale: [1, 1.05, 1] }}

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { PartyPopper } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -19,9 +20,11 @@ export default function Home() {
           </div>
         </div>
 
-        <img
+        <Image
           src="/arraia.jpg"
           alt="Festa da Roça"
+          width={400}
+          height={300}
           className="w-full rounded-2xl border-4 border-yellow-300 shadow-lg"
         />
 
