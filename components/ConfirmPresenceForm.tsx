@@ -11,7 +11,6 @@ export function ConfirmPresenceForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log({ name, guests });
     alert("Presença confirmada! 🎊");
     // Aqui você salvaria no backend ou planilha
   }

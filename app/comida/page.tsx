@@ -69,7 +69,19 @@ export default function Comidas() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md text-center"
       >
+        <div className="space-y-3 mb-6">
+          <div className="p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 text-sm rounded-md shadow-sm">
+            <strong>Atenção:</strong> além do que você irá trazer como comida, traga sua bebida, conforme a sua vontade.
+          </div>
+
+          <div className="p-4 bg-orange-50 border-l-4 border-orange-500 text-orange-800 text-sm rounded-md shadow-sm">
+            <strong>Quantidade:</strong> Individual ou casal = 1 prato qualquer (doce ou salgado); casal com filhos = 1 doce <strong>e</strong> 1 salgado.
+          </div>
+        </div>
+
         <h1 className="text-2xl font-bold mb-6">O que você vai trazer?</h1>
+
+
 
         <div className="flex justify-center gap-4 mb-6">
           <Button
