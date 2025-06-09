@@ -14,7 +14,7 @@ export default function FinalPage() {
         <div className="max-w-xl text-center space-y-8">
           <h1 className="text-3xl font-bold">🎊 Presença Confirmada!</h1>
           <p className="text-lg">
-            Obrigado por confirmar sua presença na nossa Festa Junina!
+            Obrigado por confirmar sua presença na nossa Festa da Roça!
           </p>
 
           <motion.div
