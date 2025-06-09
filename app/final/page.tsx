@@ -33,7 +33,7 @@ export default function FinalPage() {
           </motion.div>
 
           <div className="text-left text-base space-y-3 mt-6">
-            <p>🎯 <strong>Brincadeiras programadas:</strong> quadrilha, pescaria e karaokê</p>
+            <p>🎯 <strong>Venha vestido a caráter!</strong></p>
             <p>📍 <strong>Local e horário:</strong> Rua Urbano Santos, 30 - Laranjal - A partir das 18h</p>
           </div>
 
