@@ -71,11 +71,15 @@ export default function Comidas() {
       >
         <div className="space-y-3 mb-6">
           <div className="p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 text-sm rounded-md shadow-sm">
-            <strong>Atenção:</strong> além do que você irá trazer como comida, traga sua bebida, conforme a sua vontade.
+            <strong>Atenção:</strong> além do que você irá trazer como comida, traga sua bebida, conforme a sua vontade. Traga seu cooler se não quiser misturar sua cerveja.
           </div>
 
           <div className="p-4 bg-orange-50 border-l-4 border-orange-500 text-orange-800 text-sm rounded-md shadow-sm">
             <strong>Quantidade:</strong> Individual ou casal = 1 prato qualquer (doce ou salgado); casal com filhos = 1 doce <strong>e</strong> 1 salgado.
+          </div>
+
+          <div className="p-4 bg-orange-50 border-l-4 border-purple-500 text-orange-800 text-sm rounded-md shadow-sm">
+            <strong>Atenção (2):</strong> se você escolher pé-de-moleque, não inventa de faltar nessa joça (aconteceu na última e ficamos sem um item como esse). Grato
           </div>
         </div>
 
@@ -85,6 +89,7 @@ export default function Comidas() {
 
         <div className="flex justify-center gap-4 mb-6">
           <Button
+            className='cursor-pointer'
             variant={tipoSelecionado === 'doce' ? 'default' : 'outline'}
             onClick={() => {
               setTipoSelecionado('doce')
@@ -94,6 +99,7 @@ export default function Comidas() {
             🍬 Doce
           </Button>
           <Button
+            className='cursor-pointer'
             variant={tipoSelecionado === 'salgado' ? 'default' : 'outline'}
             onClick={() => {
               setTipoSelecionado('salgado')
@@ -169,7 +175,7 @@ export default function Comidas() {
         <Button
           disabled={selecionados.length === 0 || tipoSelecionado === null}
           onClick={handleConfirm}
-          className="w-full bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-3 rounded-full shadow-md"
+          className="w-full cursor-pointer bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-3 rounded-full shadow-md"
         >
           Confirmar 🎊
         </Button>

@@ -24,7 +24,7 @@ export default function FinalPage() {
             className="bg-yellow-200 border-4 border-yellow-500 rounded-lg p-5 shadow-lg"
           >
             <p className="text-xl font-extrabold text-yellow-900 mb-2">
-              💰 Valor da contribuição: <span className="text-3xl">R$5</span> por pessoa. Enviar para o pix:
+              💰 Valor da contribuição: <span className="text-3xl">R$10</span> por pessoa. Enviar para o pix:
               153.889.977-90
             </p>
             <p className="text-sm font-semibold text-yellow-800 leading-snug">

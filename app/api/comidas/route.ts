@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 const doces = [
   { id: 'cuzcuz', nome: 'Cuzcuz', max: 1, imagem: '/doces/cuzcuz.jpeg' },
   { id: 'canjica', nome: 'Mungunzá (canjica)', max: 1, imagem: '/doces/canjica.jpg' },
-  { id: 'pacoca', nome: 'Paçoca', max: 1, imagem: '/doces/pacoca.jpeg' },
+  { id: 'pacoca', nome: 'Paçoca', max: 0, imagem: '/doces/pacoca.jpeg' },
   { id: 'cocada', nome: 'Cocada', max: 1, imagem: '/doces/cocada.jpeg' },
   { id: 'bolo-milho', nome: 'Bolo de Milho', max: 2, imagem: '/doces/bolodemilho.jpg' },
   { id: 'bolo-aipim', nome: 'Bolo de Aipim', max: 2, imagem: '/doces/boloaipim.jpeg' },
@@ -18,11 +18,11 @@ const salgados = [
   { id: 'caldoervilha', nome: 'Caldo ervilha', max: 1, imagem: '/salgados/caldoervilha.jpeg' },
   { id: 'pastel', nome: 'Pastel', max: 2, imagem: '/salgados/pastel.jpeg' },
   { id: 'empadinha', nome: 'Empadinha', max: 2, imagem: '/salgados/empadinha.jpeg' },
-  { id: 'salgadinho', nome: 'Salgadinho (50 unidades)', max: 4, imagem: '/salgados/salgadinho.jpg' },
+  { id: 'salgadinho', nome: 'Salgadinho (50 unidades)', max: 6, imagem: '/salgados/salgadinho.jpg' },
   { id: 'milho', nome: 'Milho', max: 2, imagem: '/salgados/milho.jpg' },
   { id: 'espetinho', nome: 'Espetinhos', max: 2, imagem: '/salgados/espetinho.jpg' },
   { id: 'kafta', nome: 'Kafta', max: 2, imagem: '/salgados/kafta.jpeg' },
-  { id: 'salsichao', nome: 'Salsichão', max: 2, imagem: '/salgados/salsichao.jpeg' },
+  { id: 'salsichao', nome: 'Salsichão', max: 0, imagem: '/salgados/salsichao.jpeg' },
 ]
 
 export async function GET() {

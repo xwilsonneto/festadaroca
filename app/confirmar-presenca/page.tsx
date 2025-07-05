@@ -45,7 +45,7 @@ export default function Confirmar() {
   const handleSubmit = () => {
     if (!nome) return
     localStorage.setItem('nome', nome)
-    localStorage.setItem('acompanhantes', JSON.stringify(acompanhantes))
+    localStorage.setItem('amigos', JSON.stringify(acompanhantes))
     router.push('/comida')
   }
 
