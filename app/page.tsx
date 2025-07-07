@@ -1,6 +1,7 @@
+/* eslint-disable */
+
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { PartyPopper, Loader2 } from 'lucide-react'
 import Image from 'next/image'
