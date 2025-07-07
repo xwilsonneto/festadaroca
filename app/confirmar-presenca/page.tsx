@@ -17,13 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { PartyPopper } from 'lucide-react'
+import { Loader2, PartyPopper } from 'lucide-react'
 
 export default function Confirmar() {
   const [nome, setNome] = useState('')
   const [quantidade, setQuantidade] = useState('0')
   const [acompanhantes, setAcompanhantes] = useState<string[]>([])
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleQuantidadeChange = (value: string) => {
     setQuantidade(value)
@@ -44,6 +45,7 @@ export default function Confirmar() {
 
   const handleSubmit = () => {
     if (!nome) return
+    setIsLoading(true)
     localStorage.setItem('nome', nome)
     localStorage.setItem('amigos', JSON.stringify(acompanhantes))
     router.push('/comida')
@@ -110,9 +112,11 @@ export default function Confirmar() {
 
             <Button
               onClick={handleSubmit}
-              className="w-full mt-4 bg-yellow-700 hover:bg-yellow-800 text-white font-semibold rounded-full py-2"
+              disabled={isLoading}
+              className="w-full mt-4 cursor-pointer bg-yellow-700 hover:bg-yellow-800 text-white font-semibold rounded-full py-2"
             >
-              Escolha seu prato 🍢
+              {isLoading && <Loader2 className="h-5 w-5 animate-spin" />}
+                "Escolha seu prato 🍢"
             </Button>
           </CardContent>
         </Card>

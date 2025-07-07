@@ -2,10 +2,23 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { PartyPopper } from 'lucide-react'
+import { PartyPopper, Loader2 } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
+  const handleConfirmClick = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      router.push('/confirmar-presenca')
+    }, 500)
+  }
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-[#fff4e6] text-[#3e2a1c] px-4 py-10">
       <motion.div
@@ -30,12 +43,14 @@ export default function Home() {
 
         <h1 className="text-lg font-bold">Você está convidado(a) pro nosso arraiá!</h1>
 
-        <Link
-          href="/confirmar-presenca"
-          className="inline-block bg-yellow-700 hover:bg-yellow-800 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-md transition"
+        <Button
+          onClick={handleConfirmClick}
+          disabled={isLoading}
+          className="inline-flex items-center cursor-pointer justify-center gap-2 bg-yellow-700 hover:bg-yellow-800 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-md transition disabled:opacity-70"
         >
+          {isLoading && <Loader2 className="h-5 w-5 animate-spin" />}
           Confirmar presença 🎉
-        </Link>
+        </Button>
       </motion.div>
     </main>
   )

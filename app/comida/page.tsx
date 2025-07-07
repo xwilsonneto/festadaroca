@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 
 type ComidaItem = {
@@ -23,6 +23,7 @@ export default function Comidas() {
   const [selecionados, setSelecionados] = useState<string[]>([])
   const [opcoes, setOpcoes] = useState<{ doces: ComidaItem[]; salgados: ComidaItem[] }>({ doces: [], salgados: [] })
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +41,7 @@ export default function Comidas() {
   }
 
   const handleConfirm = async () => {
+    setIsLoading(true)
     const nome = localStorage.getItem('nome') || ''
     const amigos = JSON.parse(localStorage.getItem('amigos') || '[]')
 
@@ -146,12 +148,52 @@ export default function Comidas() {
                       />
                       <div className="flex-1 text-left">
                         <div className="font-bold">{item.nome}</div>
-                        {item.pessoas && item.pessoas.length > 0 && (
-                          <div className="text-xs text-muted-foreground mt-1 max-w-xs truncate">
-                            Pescado por: {item.pessoas.join(', ')}
+
+                        {Array.isArray(item.pessoas) && item.pessoas.length > 0 && (
+                          <div className="text-xs text-muted-foreground mt-1 max-w-xs">
+                            {/* Primeiros dois nomes na mesma linha */}
+                            <span className="truncate">
+                              Pescado por:{' '}
+                              {item.pessoas.slice(0, 2).map((nome, i) => {
+                                const globalIndex = i;
+                                const isLast = globalIndex === item.pessoas!.length - 1;
+                                return (
+                                  <span key={i}>
+                                    {nome}
+                                    {!isLast ? ', ' : ''}
+                                  </span>
+                                );
+                              })}
+                            </span>
+
+                            {/* Nomes restantes em linhas de dois */}
+                            {item.pessoas.length > 2 && (
+                              <div className="flex flex-col gap-0.5 mt-1">
+                                {item.pessoas.slice(2).reduce((rows: string[][], nome, index) => {
+                                  const rowIndex = Math.floor(index / 2);
+                                  if (!rows[rowIndex]) rows[rowIndex] = [];
+                                  rows[rowIndex].push(nome);
+                                  return rows;
+                                }, []).map((row, rowIdx) => (
+                                  <div key={rowIdx} className="truncate">
+                                    {row.map((nome, i) => {
+                                      const globalIndex = 2 + rowIdx * 2 + i;
+                                      const isLast = globalIndex === item.pessoas!.length - 1;
+                                      return (
+                                        <span key={i}>
+                                          {nome}
+                                          {!isLast ? ', ' : ''}
+                                        </span>
+                                      );
+                                    })}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
+
                       <div className="flex flex-col items-center justify-center select-none">
                         <div className="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 text-yellow-700 font-bold text-lg">
                           {item.restante}
@@ -173,10 +215,11 @@ export default function Comidas() {
         </AnimatePresence>
 
         <Button
-          disabled={selecionados.length === 0 || tipoSelecionado === null}
+          disabled={selecionados.length === 0 || tipoSelecionado === null || isLoading}
           onClick={handleConfirm}
           className="w-full cursor-pointer bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-3 rounded-full shadow-md"
         >
+          {isLoading && <Loader2 className="h-5 w-5 animate-spin" />}
           Confirmar 🎊
         </Button>
       </motion.div>
