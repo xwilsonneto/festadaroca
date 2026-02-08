@@ -19,8 +19,8 @@ export async function GET() {
     const fraldasG = registros.filter(r => r.tamanhoFralda === 'G').length
 
     // Limite de 20 para cada tamanho
-    const disponibilidadeM = Math.max(20 - fraldasM, 0)
-    const disponibilidadeG = Math.max(20 - fraldasG, 0)
+    const disponibilidadeM = Math.max(40 - fraldasM, 0)
+    const disponibilidadeG = Math.max(40 - fraldasG, 0)
 
     return NextResponse.json({
       M: disponibilidadeM,
