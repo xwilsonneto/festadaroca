@@ -18,7 +18,7 @@ import { cn } from '@/lib/utils'
 export default function Confirmar() {
   const [nome, setNome] = useState('')
   const [tamanhoFralda, setTamanhoFralda] = useState<'M' | 'G' | null>(null)
-  const [fraldasDisponiveis, setFraldasDisponiveis] = useState<{ M: number; G: number }>({ M: 20, G: 20 })
+  const [fraldasDisponiveis, setFraldasDisponiveis] = useState<{ M: number; G: number }>({ M: 40, G: 40 })
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
