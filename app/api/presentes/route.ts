@@ -4,13 +4,13 @@ import { NextResponse } from 'next/server'
 
 const presentesFraldaM = [
   { id: 'm-1', nome: 'Saída maternidade', tamanho: 'M' },
-  { id: 'm-2', nome: 'Banheira de pé', tamanho: 'M' },
-  { id: 'm-3', nome: 'Ferro de passar', tamanho: 'M' },
+  { id: 'm-2', nome: 'Lenço', tamanho: 'M' },
+  { id: 'm-3', nome: 'Pomada', tamanho: 'M' },
   { id: 'm-4', nome: 'Pomada', tamanho: 'M' },
   { id: 'm-5', nome: 'Lenço', tamanho: 'M' },
   { id: 'm-6', nome: 'Prendedor de chupeta', tamanho: 'M' },
   { id: 'm-7', nome: 'Lenço', tamanho: 'M' },
-  { id: 'm-8', nome: 'Tábua de passar', tamanho: 'M' },
+  { id: 'm-8', nome: 'Lixeira', tamanho: 'M' },
   { id: 'm-9', nome: 'Lenço', tamanho: 'M' },
   { id: 'm-10', nome: 'Protetinho', tamanho: 'M' },
   { id: 'm-11', nome: 'Nebulizador', tamanho: 'M' },
@@ -35,9 +35,7 @@ const presentesFraldaM = [
   { id: 'm-30', nome: 'Chupeta', tamanho: 'M' },
   { id: 'm-31', nome: 'Lenço', tamanho: 'M' },
   { id: 'm-32', nome: 'Tapete', tamanho: 'M' },
-  { id: 'm-33', nome: 'Babador', tamanho: 'M' },
-  { id: 'm-34', nome: 'Lenço', tamanho: 'M' },
-  { id: 'm-35', nome: 'Pomada', tamanho: 'M' },
+  { id: 'm-33', nome: 'Babador', tamanho: 'M' }
 ]
 
 const presentesFraldaG = [
@@ -84,8 +82,8 @@ export async function GET() {
     // Verificar disponibilidade de fraldas
     const fraldasM = registros.filter(r => r.tamanhoFralda === 'M').length
     const fraldasG = registros.filter(r => r.tamanhoFralda === 'G').length
-    const disponibilidadeM = Math.max(20 - fraldasM, 0)
-    const disponibilidadeG = Math.max(20 - fraldasG, 0)
+    const disponibilidadeM = Math.max(40 - fraldasM, 0)
+    const disponibilidadeG = Math.max(40 - fraldasG, 0)
 
     const todosPresentes = [...presentesFraldaM, ...presentesFraldaG]
 
