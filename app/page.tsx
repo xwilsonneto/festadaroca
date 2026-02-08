@@ -1,7 +1,6 @@
 /* eslint-disable */
 'use client'
 
-import { motion } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -31,12 +30,8 @@ export default function Home() {
           backgroundColor: '#000'
         }}
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute bottom-32 w-full text-center px-4"
-        >
+        {/* Botão sem animação */}
+        <div className="absolute bottom-40 w-full text-center px-4">
           <Button
             onClick={handleConfirmClick}
             disabled={isLoading}
@@ -45,7 +40,7 @@ export default function Home() {
             {isLoading && <Loader2 className="h-5 w-5 animate-spin" />}
             Confirme sua presença
           </Button>
-        </motion.div>
+        </div>
       </div>
     </main>
   )
